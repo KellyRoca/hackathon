@@ -1,0 +1,35 @@
+<div class="p-5 max-w-[1200px] m-auto">
+  <h1 class="fh1 mt-5 md:mt-20 mb-4">Productos</h1>
+
+  <section class="container">
+    <section class="product-card" *ngFor="let product of products">
+      <img class="product-card__img mb-2" [src]="product.img" alt="">
+      <section class="product-card__description flex flex-col place-content-between">
+        <section class="flex flex-col">
+          <h2 class="product-card__name">{{ product?.name }}</h2>
+          <p class="product-card__price">S/ {{ product?.price | number:'1.2-2'}}</p>
+        </section>
+
+        <section *ngIf="!isInCart(product.id)">
+          <button mat-flat-button color="accent" class="product-card__add-btn mt-3 w-full cursor-pointer max-w-[200px] md:max-w-full" (click)="addToCart(product)">Agregar</button>
+        </section>
+
+        <section *ngIf="isInCart(product.id)" class="flex items-center mt-3 place-content-center gap-3">
+          <button mat-mini-fab (click)="decrementQuantity(product)">
+            <mat-icon *ngIf="getCartItem(product?.id)?.quantity > 1">remove</mat-icon>
+            <mat-icon *ngIf="getCartItem(product?.id)?.quantity <= 1">delete</mat-icon>
+          </button>
+          <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[50px] text-center"
+           type="number" [(ngModel)]="getCartItem(product.id).quantity" min="1" (ngModelChange)="updateQuantity(product, $event)">
+          <button mat-mini-fab (click)="incrementQuantity(product)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </section>
+
+      </section>
+
+    </section>
+
+  </section>
+
+</div>

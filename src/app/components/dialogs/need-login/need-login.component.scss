@@ -1,0 +1,12 @@
+.need-login{
+  font-family: 'Montserrat';
+  button{
+    height: 56px;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 12px;
+    &-border{
+      border-color: var(--orange);
+    }
+  }
+}

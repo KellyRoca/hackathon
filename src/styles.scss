@@ -1,1 +1,143 @@
-/* You can add global styles to this file, and also import other style files */
+@import "src/custom-theme.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+body,
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-hackathon {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.mdc-notched-outline__notch {
+  border-right: none !important;
+}
+
+.openSidebar {
+  mat-form-field,
+  .mat-accent {
+    z-index: -1 !important;
+  }
+  .items-cart{
+    display: none !important;
+  }
+}
+
+:root {
+  --orange: #f27822;
+  --cetacean: #000f49;
+  --white: #fcfcfd;
+  --gray: #e4e7ec;
+  --red: #f24322;
+  --yellow: #f2af22;
+  --skyblue: #22a9f2;
+  --green: #5cf222;
+  --cetacean-50: #000f4980;
+}
+
+.fh1 {
+  font-size: 30px;
+  letter-spacing: -1%;
+  font-weight: 700;
+  @media (min-width: 768px) {
+    font-size: 35px;
+  }
+}
+
+.fh2 {
+  font-size: 20px;
+  font-weight: 700;
+  @media (min-width: 768px) {
+    font-size: 32px;
+  }
+}
+
+.fh3 {
+  font-size: 24px;
+  letter-spacing: -1%;
+  font-weight: 700;
+}
+
+.fh4 {
+  font-size: 20px;
+  letter-spacing: -1%;
+  font-weight: 700;
+}
+
+.fs16 {
+  font-size: 14px !important;
+  letter-spacing: -1%;
+  @media (min-width: 768px) {
+    font-size: 16px !important;
+  }
+}
+
+.fs14 {
+  font-size: 14px !important;
+  letter-spacing: -1%;
+}
+
+.fs12 {
+  font-size: 12px !important;
+  letter-spacing: -1%;
+}
+
+.mr-0 {
+  margin-right: 0 !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.form-btn {
+  height: 56px !important;
+  width: 100%;
+  max-width: 394px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+}
+
+mat-error {
+  line-height: 12px;
+  font-size: 10px;
+}
+
+.hackathon-container {
+  min-height: calc(100dvh - 90px) !important;
+  @media (min-width: 768px) {
+    min-height: calc(100dvh - 120px) !important;
+  }
+}
+
+button.mdc-fab.mdc-fab--mini.mat-mdc-mini-fab.mat-accent.mat-mdc-button-base {
+  background: #f8f8f8;
+  border: 1px solid #37383e;
+  box-shadow: none;
+  width: 30px;
+  height: 30px;
+  mat-icon {
+    color: #37383e;
+  }
+}
+
+.strong{
+  font-weight: 800 !important;
+}
+
+.mdc-dialog__surface{
+  border-radius: 14px !important;
+  @media (min-width: 768px) {
+    border-radius: 20px !important;
+  }
+}

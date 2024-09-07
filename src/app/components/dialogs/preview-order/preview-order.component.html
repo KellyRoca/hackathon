@@ -1,0 +1,68 @@
+<section class="md:p-6 px-4 py-6 m-auto">
+  <section>
+    <h2 class="fh3 text-[var(--cetacean)] mb-3 md:mb-6">Previsualización de orden de compra</h2>
+  </section>
+  <section class="border-gray-500 rounded-xl p-3 border-solid ticket-preview">
+    <section class="flex flex-col w-full">
+      <section class="self-end">
+        <h2 class="fs16 text-[var(--cetacean)]">Dexhackathon S.A.C.</h2>
+        <p class="fs16 text-[var(--cetacean)]">{{'facturacion@dexhackathon.com'}}</p>
+      </section>
+      <section class="flex flex-col md:gap-8 gap-3">
+        <section>
+          <p class="fs16 font-bold text-[var(--cetacean)]">RUC: <span class="font-normal">{{userData?.ruc}}</span></p>
+          <p class="fs16 font-bold text-[var(--cetacean)]">Solicitante: <span class="font-normal">{{userData?.firstName
+              + userData?.lastName}}</span></p>
+          <p class="fs16 font-bold text-[var(--cetacean)]">N° de contacto: <span
+              class="font-normal">{{userData?.phone}}</span></p>
+        </section>
+        <section>
+
+        </section>
+      </section>
+    </section>
+
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td class="fs14 text-start">{{ item.name }}</td>
+          <td class="fs14 text-center">S/ {{ item.price }}</td>
+          <td class="fs14 text-center">{{ item.quantity }}</td>
+          <td class="fs14 text-center">S/ {{ item.price * item.quantity | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="fs14 text-end">Subtotal sin IGV:</td>
+          <td class="fs14">S/ {{ subtotal }}</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="fs14 text-end">IGV:</td>
+          <td class="fs14">S/ {{ igv }}</td>
+        </tr>
+        <tr>
+          <td colspan="3" class="fs14 text-end">Costo de Envío:</td>
+          <td class="fs14">Gratis</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3" class="fs14 text-end strong">Total:</td>
+          <td class="fs14">S/ {{ total }}</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <section>
+      <p class="fs16 font-bold text-[var(--cetacean)]">Comentarios:</p>
+      <section class="fs16 text-[var(--cetacean)] p-3 border-solid">Este documento es una previsualización, no tiene
+        índole tributaria ni legal.</section>
+    </section>
+  </section>
+</section>

@@ -1,0 +1,34 @@
+.order-ticket {
+  &__btn{
+    height: 56px;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 12px;
+    &-border{
+      border-color: var(--orange);
+    }
+  }
+}
+.bank-account {
+  width: 100%;
+  &__btn {
+    display: flex;
+    align-items: center;
+    place-content: center;
+    width: 120px;
+    background-color: rgba(0, 49, 247, 0.06);
+    border-radius: 10px;
+    height: 54px;
+    color: var(--cetacean);
+    padding: 16px 24px;
+    @media (max-width: 639px) {
+      width: 100%;
+    }
+    ::ng-deep span.mdc-button__label{
+      display: flex !important;
+      align-items: center;
+      gap: 7px;
+      font-weight: 700;
+    }
+  }
+}

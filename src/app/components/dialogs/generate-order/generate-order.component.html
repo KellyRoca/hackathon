@@ -1,0 +1,37 @@
+<section *ngIf="spinner; else newOC" class="flex flex-col items-center p-5 gap-5 place-content-center m-auto">
+  <mat-spinner [diameter]="40"></mat-spinner>
+  <p class="fs16">Generando orden...</p>
+</section>
+<ng-template #newOC>
+  <section class="p-5 flex flex-col gap-4 items-center order-ticket">
+    <section class="flex flex-col items-center">
+      <img src="assets/images/check-modal.svg" alt="Generada">
+      <h2 class="fh2">IMPORTANTE</h2>
+    </section>
+    <section class="flex flex-col gap-5">
+      <section class="flex flex-col items-center">
+        <p class="fs16">
+          N° de Orden de Compra
+        </p>
+        <section class="flex flex-col gap-3 sm:flex-row sm:justify-between bank-account items-center">
+          <div class="flex flex-row bank-account__card">
+            <div class="flex flex-col">
+              <p class="font-semibold">{{orderUid}}</p>
+            </div>
+          </div>
+          <button type="button" mat-flat-button color="accent" class="bank-account__btn" (click)="copyData()">
+            Copiar
+            <img src="assets/images/copy-icon.svg" alt="copiar" />
+          </button>
+        </section>
+      </section>
+      <p class="fs16">
+        Puedes visualizar tu pedido desde la sección “Mis pedidos”.
+      </p>
+
+      <button mat-flat-button color="accent" (click)="close()" class="order-ticket__btn order-ticket__btn-normal">
+        Entendido
+      </button>
+    </section>
+  </section>
+</ng-template>

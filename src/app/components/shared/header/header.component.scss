@@ -1,0 +1,126 @@
+header {
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff9900;
+    }
+
+    .menu-button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      height: 80px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    height: 50px;
+  }
+
+  .banner {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.hackathon-header {
+  .btn {
+    &__signup {
+      font-size: 16px;
+      background-color: var(--yellow);
+      color: var(--white);
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 12px;
+      height: 56px;
+      letter-spacing: 0px;
+      width: 190px;
+    }
+    &__login {
+      color: var(--yellow);
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 12px;
+      height: 56px;
+      letter-spacing: 0px;
+      width: 190px;
+      border: solid 1px var(--yellow);
+    }
+  }
+}
+
+.example-container {
+  width: 400px;
+  height: 200px;
+  margin: 12px;
+  border: 1px solid #555;
+}
+
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.categories-menu {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 200px;
+}
+
+.categories-menu li {
+  position: relative;
+  padding: 10px 20px;
+}
+
+.products-menu {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 200px;
+}
+
+
+
+
+.shopping-cart-icon {
+  position: relative;
+  display: inline-block;
+  font-size: 24px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  place-content: center;
+}
+
+.item-count {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 5px;
+  font-size: 10px;
+  font-weight: bold;
+}
