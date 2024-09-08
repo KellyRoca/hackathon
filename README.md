@@ -35,3 +35,6 @@ La principal motivación para crear **BeeNice** surge de la falta de herramienta
 ## Enlace a los Recursos
 
 Puedes acceder a los recursos del proyecto (proceso del proyecto), incluidos los diseños y otros documentos, en el siguiente enlace de Google Drive: [Drive Link](https://drive.google.com/drive/folders/1KYGQWVhjYlAW4ORClHzDXtDwsZjJimZj?usp=sharing)
+
+## Link de la web
+https://kellyroca.github.io/hackathon/
