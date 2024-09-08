@@ -20,7 +20,7 @@ export class HabitsFormComponent implements OnInit {
     devices: []
   };
 
-  currentStep = 1;  // Controla el paso actual (empieza en la primera pregunta)
+  currentStep = 1;
 
   constructor(private firestore: AngularFirestore, private authService: AuthService, private router: Router) {}
 
@@ -33,22 +33,19 @@ export class HabitsFormComponent implements OnInit {
     }
   }
 
-  // Selecciona solo una opción (para la dieta)
   selectOption(category: string, option: string) {
     this.habits[category] = option;
   }
 
-  // Permite selección múltiple (para transporte y dispositivos)
   toggleSelection(category: string, option: string) {
     const index = this.habits[category].indexOf(option);
     if (index > -1) {
-      this.habits[category].splice(index, 1); // Deseleccionar
+      this.habits[category].splice(index, 1);
     } else {
-      this.habits[category].push(option); // Seleccionar
+      this.habits[category].push(option);
     }
   }
 
-  // Guardar los hábitos en Firestore y continuar a la siguiente pregunta
   async saveAndContinue() {
     try {
       const userId = await this.authService.getUserId();
@@ -57,32 +54,27 @@ export class HabitsFormComponent implements OnInit {
           diet: this.habits.diet,
           transport: this.habits.transport,
           devices: this.habits.devices,
-          date: this.getCurrentDate()  // Guardar la fecha en formato MM-DD-YYYY
+          date: this.getCurrentDate()
         }, { merge: true });
-        console.log('Hábitos guardados');
         if(this.currentStep === 3){
           this.router.navigate(['inicio']);
         }else{
           this.currentStep++;
-        }// Pasar a la siguiente pregunta
+        }
       }
     } catch (error) {
       console.error('Error al guardar hábitos:', error);
     }
   }
 
-  // Guardar los hábitos y finalizar
   async saveAndFinish() {
     await this.saveAndContinue();
-    // Aquí puedes redirigir a otra página o mostrar un mensaje de finalización
-    console.log('Formulario completado');
   }
 
-  // Obtener la fecha actual en formato MM-DD-YYYY
   getCurrentDate(): string {
     const date = new Date();
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);  // Asegura dos dígitos
-    const day = ('0' + date.getDate()).slice(-2);           // Asegura dos dígitos
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
     const year = date.getFullYear();
     return `${year}-${month}-${day}`;
   }

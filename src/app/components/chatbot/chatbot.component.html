@@ -1,19 +1,28 @@
-<div class="chat-container bg-white h-screen p-4 flex flex-col justify-between">
-  <!-- Header del chat -->
+<div class="chat-container bg-white h-screen p-4 flex flex-col">
   <div class="chat-header bg-blue-500 text-white text-center p-3 rounded-t-md">
-    <h2>Chatbot</h2>
+    <h2>BEENNY</h2>
   </div>
+<div *ngIf="alreadyRegisteredToday" class="flex items-start space-x-3 max-w-full">
+  <div class="chat-message bg-blue-200 text-blue-800 p-3 rounded-lg shadow-md mt-[16px]">
+    <p>¡Ups!, al parecer ya registraste tu huella de carbono el día de hoy.</p>
+  </div>
+</div>
 
-  <!-- Área de mensajes -->
+<div *ngIf="!alreadyRegisteredToday">
   <div class="chat-messages flex-1 overflow-y-auto space-y-5 py-3 max-w-full">
-
-    <!-- Pregunta 1: Comida -->
     <div *ngIf="showMeatConsumptionTyping" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="bg-gray-300 text-gray-600 p-3 rounded-lg shadow-md relative max-w-full">... escribiendo</div>
     </div>
     <div *ngIf="!showMeatConsumptionTyping" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <div class="chat-message p-3 rounded-lg shadow-md relative max-w-full break-words"
+        style="background-color: #F2F2F3;">
+        <p>¡Hola, <strong>{{user?.firstName}}</strong>! <br>Vamos a registrar tu huella de carbono del día de hoy</p>
+      </div>
+    </div>
+    <div *ngIf="!showMeatConsumptionTyping" class="flex items-start space-x-3 max-w-full">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="chat-message p-3 rounded-lg shadow-md relative max-w-full break-words"
         style="background-color: #F2F2F3;">
         <p>Comencemos con tu <strong>COMIDA</strong>. ¿Comiste carne 🥩 hoy?</p>
@@ -27,14 +36,12 @@
           'No' }}</div>
       </div>
     </div>
-
-    <!-- Pregunta 2: Movilidad -->
     <div *ngIf="showTransportTyping" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="bg-gray-300 text-gray-600 p-3 rounded-lg shadow-md relative max-w-full">... escribiendo</div>
     </div>
     <div *ngIf="!showTransportTyping && answeredMeatConsumption" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="chat-message p-3 rounded-lg shadow-md mt-4 max-w-full break-words" style="background-color: #F2F2F3;">
         <p>Sigamos con tu <strong>MOVILIDAD</strong>. ¿Por cuánto tiempo te movilizaste en...?</p>
         <div *ngFor="let transport of habits.transport" class="mt-2 flex justify-between items-center">
@@ -61,13 +68,12 @@
       </div>
     </div>
 
-    <!-- Pregunta 3: Tecnología -->
     <div *ngIf="showDeviceTyping" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="bg-gray-300 text-gray-600 p-3 rounded-lg shadow-md relative max-w-full">... escribiendo</div>
     </div>
     <div *ngIf="!showDeviceTyping && answeredTransport" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="chat-message p-3 rounded-lg shadow-md mt-4 max-w-full break-words" style="background-color: #F2F2F3;">
         <p>Sigamos con tu <strong>TECNOLOGÍA</strong>. ¿Por cuánto tiempo utilizaste...?</p>
         <div *ngFor="let device of habits.devices" class="mt-2 flex justify-between items-center">
@@ -95,21 +101,19 @@
 
     <!-- Mensaje de finalización y huella de carbono -->
     <div *ngIf="showFinalMessageTyping" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="bg-gray-300 text-gray-600 p-3 rounded-lg shadow-md relative max-w-full">... escribiendo</div>
     </div>
     <div *ngIf="!showFinalMessageTyping && answeredDevices" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="chat-message p-3 rounded-lg shadow-md mt-4 max-w-full break-words" style="background-color: #F2F2F3;">
         <p>Nice! Hemos acabado con el registro 🌟🤩</p>
         <p>Tu huella de carbono del día es <strong>{{ co2Total }} gr CO2</strong>. 🌳🌳🌳</p>
       </div>
     </div>
 
-    <!-- Botones de acción con sombra y fondo transparente -->
-
     <div *ngIf="showActionButtons" class="flex items-start space-x-3 w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="chat-message p-3 rounded-lg shadow-lg mt-4 w-full break-words" style="background-color: #F2F2F3;">
         <p>¿Qué quisieras hacer ahora?</p>
         <div class="flex flex-col space-y-2">
@@ -123,13 +127,12 @@
       </div>
     </div>
 
-    <!-- Mensaje de recomendaciones -->
     <div *ngIf="showFinalMessageTyping" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="bg-gray-300 text-gray-600 p-3 rounded-lg shadow-md relative max-w-full">... escribiendo</div>
     </div>
     <div *ngIf="showRecommendationMessage" class="flex items-start space-x-3 max-w-full">
-      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <img src="assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
       <div class="chat-message p-3 rounded-lg shadow-md mt-4 max-w-full break-words" style="background-color: #F2F2F3;">
         <p>¡Aquí tienes algunas recomendaciones para reducir tu impacto ambiental!</p>
         <ul class="list-disc ml-5">
@@ -138,7 +141,6 @@
       </div>
     </div>
 
-    <!-- Botón Finalizar Conversación -->
     <div *ngIf="showRecommendationMessage" class="flex justify-end">
       <button (click)="handleAction('end')" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">
         Finalizar conversación
@@ -146,4 +148,6 @@
     </div>
 
   </div>
+</div>
+
 </div>

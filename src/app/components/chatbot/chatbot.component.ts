@@ -33,17 +33,22 @@ export class ChatbotComponent implements OnInit {
   co2Total: number = 0;  // Almacenar el total de CO2 calculado
   recommendationMessage: string[] = [];
   showRecommendationMessage = false;
+  user;
+  alreadyRegisteredToday = false;
 
   constructor(private firestore: AngularFirestore, private authService: AuthService, private router: Router) { }
+
 
   async ngOnInit() {
     const userId = await this.authService.getUserId();
     if (userId) {
+      this.user = (await firstValueFrom(this.firestore.collection('users').doc(userId).get())).data();
+      const today = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+
       // Obtener los hábitos del usuario desde Firestore
       const habitsDoc = await firstValueFrom(this.firestore.collection('habits').doc(userId).get());
       if (habitsDoc?.exists) {
         this.habits = habitsDoc.data();
-        console.log(this.habits)
         this.habits.transport.forEach((transport: string) => {
           this.transportUsage[transport] = 0;
         });
@@ -51,13 +56,32 @@ export class ChatbotComponent implements OnInit {
           this.deviceUsage[device] = 0;
         });
       }
-    }
 
-    // Mostrar "typing..." y luego el mensaje de "COMIDA"
-    setTimeout(() => {
-      this.showMeatConsumptionTyping = false;
-    }, 500);  // Simula el tiempo de "escritura" del chatbot (2 segundos)
+      const dailyHabitsDoc = await firstValueFrom(this.firestore.collection('daily_habits').doc(userId).get());
+
+      if (dailyHabitsDoc.exists) {
+        const dailyHabitsData = dailyHabitsDoc.data() as any;
+        const daysArray = dailyHabitsData.days || [];
+
+        const todayRegistered = daysArray.some((day: any) => day.date === today);
+
+        if (todayRegistered) {
+          this.alreadyRegisteredToday = true; // Bandera para controlar la visualización del mensaje
+        } else {
+          this.showMeatConsumptionTyping = true; // Comienza el chat si no se han registrado hábitos
+          setTimeout(() => {
+            this.showMeatConsumptionTyping = false;
+          }, 2000);
+        }
+      } else {
+        this.showMeatConsumptionTyping = true;
+        setTimeout(() => {
+          this.showMeatConsumptionTyping = false;
+        }, 2000);
+      }
+    }
   }
+
 
   // Responder si el usuario comió carne o no
   answerMeatConsumption(answer: boolean) {

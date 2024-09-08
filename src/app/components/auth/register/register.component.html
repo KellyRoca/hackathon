@@ -75,10 +75,10 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Fecha de nacimiento</mat-label>
-          <input matInput formControlName="birthdate" [matDatepicker]="picker"
-            placeholder="Selecciona tu fecha de nacimiento">
+          <input matInput [matDatepicker]="picker" formControlName="birthdate"
+            placeholder="Selecciona tu fecha de nacimiento" [max]="maxDate" (focus)="picker.open()">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker #picker startView="multi-year"></mat-datepicker>
           <mat-error *ngIf="stepTwoForm.get('birthdate').invalid">
             {{ stepTwoForm.get("birthdate").errors | controlErrorHandler }}
           </mat-error>
