@@ -1,4 +1,3 @@
-import { CartItem, Product } from 'src/app/interface/model';
 import { NeedLoginComponent } from 'src/app/components/dialogs/need-login/need-login.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -14,8 +13,6 @@ import { forkJoin } from 'rxjs';
 })
 export class PrincipalComponent implements OnInit {
   hasUser: boolean = false;
-  products: Product[] = [];
-  cart: CartItem[] = [];
 
   constructor(
     private router: Router,
@@ -26,18 +23,6 @@ export class PrincipalComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.spinner.show();
-
-    forkJoin([
-      this.storageService.get('user'),
-      this.storageService.get('cart')
-    ]).subscribe(([user, cart]: [any, CartItem[] | null]) => {
-      this.hasUser = user == null ? false : true;
-      if (cart != null) {
-        this.cart = cart;
-      }
-      this.spinner.hide();
-    })
 
   }
 

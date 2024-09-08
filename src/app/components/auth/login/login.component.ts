@@ -32,25 +32,6 @@ export class LoginComponent implements OnInit {
     return;
   }
 
-  // async onSubmit() {
-  //   this.spinner.show();
-  //   if(this.loginForm.invalid) return;
-  //   try {
-  //     await this.authService.signIn(this.loginForm.get("email").value, this.loginForm.get("password").value);
-  //     this.spinner.hide();
-  //     this.authService.setHasUser(true);
-  //     this.router.navigate(['/']);
-  //   } catch (error) {
-  //     this.spinner.hide();
-  //     if (error.message === 'INVALID_CREDENTIAL') {
-  //       this.snackBar.open("Las credenciales ingresadas son incorrectas.", null, { duration: 3000 });
-  //     } else if(error.message === 'INVALID_EMAIL') {
-  //       this.snackBar.open("El correo electrónico no está en el formato correcto.", null, { duration: 3000 });
-  //     }else{
-  //       console.error('Error signing in user:', error);
-  //     }
-  //   }
-  // }
   async onSubmit() {
     this.spinner.show();
     if (this.loginForm.invalid) return;

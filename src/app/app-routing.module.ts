@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { PrincipalComponent } from 'src/app/components/principal/principal.component';
 import { RegisterComponent } from 'src/app/components/auth/register/register.component';
 import { LoginComponent } from 'src/app/components/auth/login/login.component';
-import { AuthGuard } from 'src/app/services/auth.guard';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { HabitsFormComponent } from './components/habits-form/habits-form.component';
 

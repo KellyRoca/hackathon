@@ -1,38 +1,46 @@
-<div *ngIf="step === 1">
-  <label for="diet">¿Qué opción describe mejor tu dieta?</label>
-  <div class="button-group">
-    <button
-      *ngFor="let option of dietOptions"
-      (click)="selectOption('diet', option)"
-      [class.selected]="habits.diet === option">
-      {{ option }}
+<div class="habits-form-container">
+  <!-- Pregunta 1: Dieta -->
+  <div *ngIf="currentStep === 1" class="diet-selection">
+    <h3>¿Qué opción describe mejor tu dieta?</h3>
+    <div *ngFor="let option of dietOptions" class="option">
+      <button (click)="selectOption('diet', option)"
+              [ngClass]="{'selected': habits.diet === option}"
+              class="bg-blue-500 text-white py-2 px-4 rounded-md mt-2 hover:bg-blue-600">
+        {{ option }}
+      </button>
+    </div>
+    <button *ngIf="habits.diet" (click)="saveAndContinue()" class="bg-green-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-green-600">
+      Guardar y Continuar
     </button>
   </div>
-  <button (click)="nextStep()">Siguiente</button>
-</div>
 
-<div *ngIf="step === 2">
-  <label for="transport">¿Qué medio de transporte utilizas?</label>
-  <div class="button-group">
-    <button
-      *ngFor="let option of transportOptions"
-      (click)="toggleSelection('transport', option)"
-      [class.selected]="habits.transport.includes(option)">
-      {{ option }}
+  <!-- Pregunta 2: Transporte -->
+  <div *ngIf="currentStep === 2" class="transport-selection">
+    <h3>¿Qué medios de transporte utilizas?</h3>
+    <div *ngFor="let option of transportOptions" class="option">
+      <button (click)="toggleSelection('transport', option)"
+              [ngClass]="{'selected': habits.transport.includes(option)}"
+              class="bg-green-500 text-white py-2 px-4 rounded-md mt-2 hover:bg-green-600">
+        {{ option }}
+      </button>
+    </div>
+    <button *ngIf="habits.transport.length > 0" (click)="saveAndContinue()" class="bg-green-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-green-600">
+      Guardar y Continuar
     </button>
   </div>
-  <button (click)="nextStep()">Siguiente</button>
-</div>
 
-<div *ngIf="step === 3">
-  <label for="devices">¿Qué dispositivos electrónicos usas?</label>
-  <div class="button-group">
-    <button
-      *ngFor="let option of deviceOptions"
-      (click)="toggleSelection('devices', option)"
-      [class.selected]="habits.devices.includes(option)">
-      {{ option }}
+  <!-- Pregunta 3: Dispositivos -->
+  <div *ngIf="currentStep === 3" class="device-selection">
+    <h3>¿Qué dispositivos electrónicos utilizas?</h3>
+    <div *ngFor="let option of deviceOptions" class="option">
+      <button (click)="toggleSelection('devices', option)"
+              [ngClass]="{'selected': habits.devices.includes(option)}"
+              class="bg-yellow-500 text-white py-2 px-4 rounded-md mt-2 hover:bg-yellow-600">
+        {{ option }}
+      </button>
+    </div>
+    <button *ngIf="habits.devices.length > 0" (click)="saveAndFinish()" class="bg-green-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-green-600">
+      Guardar y Finalizar
     </button>
   </div>
-  <button (click)="saveHabits()">Guardar</button>
 </div>

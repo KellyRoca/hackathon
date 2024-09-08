@@ -4,9 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrincipalComponent } from './components/principal/principal.component';
-import { CartComponent } from './components/cart/cart.component';
-import { OrderConfirmedComponent } from './components/order-confirmed/order-confirmed.component';
-import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { SharedModule } from './components/shared/shared.module';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,7 +17,6 @@ import { MaterialModule } from './components/shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
-import { PreviewOrderComponent } from './components/dialogs/preview-order/preview-order.component';
 import { GenerateOrderComponent } from './components/dialogs/generate-order/generate-order.component';
 import { NeedLoginComponent } from './components/dialogs/need-login/need-login.component';
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -30,13 +26,9 @@ import { HabitsFormComponent } from './components/habits-form/habits-form.compon
   declarations: [
     AppComponent,
     PrincipalComponent,
-    CartComponent,
-    OrderConfirmedComponent,
-    OrderHistoryComponent,
     RegisterComponent,
     LoginComponent,
     ConfirmDialogComponent,
-    PreviewOrderComponent,
     GenerateOrderComponent,
     NeedLoginComponent,
     ChatbotComponent,
