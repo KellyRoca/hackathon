@@ -1,1 +1,72 @@
-<p>landing works!</p>
+<div class="relative h-[482px]">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style="background-image: url('/assets/images/background.jpeg'); filter: blur(2px);"></div>
+  <div class="absolute inset-0 flex justify-center items-center">
+    <div class="text-center">
+      <h1 class="text-black text-2xl font-bold mb-4">Tu día a día importa: <br>
+        Mide y minimiza tu impacto ambiental en el campus</h1>
+      <section class="flex flex-col gap-2 items-center">
+        <button (click)="goTo('login')"
+          class="bg-[#EF8700] text-white py-2 px-4 rounded-lg text-lg hover:bg-[#008080] w-[210px]">
+          Comienza a medir
+        </button>
+        <button
+          class="bg-[#ffff] text-[#00A6A6] py-2 px-4 rounded-lg text-lg hover:bg-[#008080] border-2 border-[#00A6A6] w-[210px]">
+          Conoce más
+        </button>
+      </section>
+    </div>
+  </div>
+</div>
+<section class="w-full p-4">
+  <h1 class="text-black text-2xl font-bold mb-[55px] mt-4">¿Sabías que...</h1>
+  <section class="flex flex-row w-full mb-[50px] gap-4">
+    <h1 class="fh1 text-[#EFCA08]">1.</h1>
+    <section class="flex flex-col w-full gap-2">
+      <p class="fs14">La huella de carbono per cápita en Perú es de aproximadamente <strong>1.4 toneladas de CO₂ al
+          año</strong></p>
+      <p class="fs12">(Banco Mundial, 2020)</p>
+    </section>
+  </section>
+  <section class="flex flex-row w-full mb-[50px] gap-4">
+    <h1 class="fh1 text-[#EFCA08]">2.</h1>
+    <section class="flex flex-col w-full gap-2">
+      <p class="fs14">En 2022, las emisiones de CO₂ en Perú han crecido <strong>5,898 megatoneladas</strong> (1M de tn),
+        un 10,59% con respecto a 2021.</p>
+      <p class="fs12">(Expansión , 2022)</p>
+    </section>
+  </section>
+  <section class="flex flex-row w-full mb-[50px] gap-4">
+    <h1 class="fh1 text-[#EFCA08]">3.</h1>
+    <section class="flex flex-col w-full gap-2">
+      <p class="fs14">Perú planea convertirse en un <strong>país carbono neutral en el año 2050</strong>, por eso desea reducir las emisiones en un 40% para el 2030.</p>
+      <p class="fs12">(Ministerio del Ambiente, 2020)</p>
+    </section>
+  </section>
+</section>
+<section class="w-full p-4">
+  <h1 class="fh2 text-center w-full">¡Es así que nace BEE<span class="fh2 text-[#EFCA08]">NICE</span>!</h1>
+  <img class="my-5" src="/assets/images/beenny-logo.png" alt="logo" height="112">
+  <p class="fs14 text-center">
+    <strong>BEENICE</strong> permite a los usuarios medir su huella de carbono diaria y les brinda recomendaciones personalizadas para reducirla, promoviendo hábitos sostenibles de manera simple y efectiva.
+  </p>
+  <h1 class="fh2 text-center w-full my-[48px]">¿Cómo logra BEE<span class="fh2 text-[#EFCA08]">NICE</span> este propósito?</h1>
+  <section class="rounded-xl p-4 bg-[#00A6A6] text-white mb-6">
+    <strong>Chatbot interactivo BEENNY:</strong> Permite a los usuarios calcular su huella de carbono basada en sus actividades diarias, como transporte, consumo de energía y alimentos.
+  </section>
+  <section class="rounded-xl p-4 bg-[#F2AF22] text-white mb-6">
+    <strong>Recomendaciones personaliza:</strong> Según la huella de carbono del usuario se le recomendaràn distintas alternativas para minimizarla.
+  </section>
+  <section class="rounded-xl p-4 bg-[#00A6A6] text-white mb-6">
+    <strong>Trackeo de avance a tiempo real:</strong> Junto a Power BI se podrá monitorear el avance de los usuarios y revisar su historial.
+  </section>
+  <h1 class="fh2 text-center w-full mb-12">¿Deseas iniciar tu aventura en BEE<span class="fh2 text-[#EFCA08]">NICE</span>?</h1>
+  <section class="flex flex-row gap-[10px] mb-[40px]">
+    <img src="/assets/images/beenny-icon.png" alt="icono" height="115" width="115">
+    <section class="flex flex-col">
+      <h1 class="fh2 text-center w-full">Nuestro amigo BEE<span class="fh2 text-[#00A6A6]">NNY</span></h1>
+      <p class="fs12 mb-4">estará encantado de conversar contigo</p>
+      <button mat-flat-button color="accent" class="form-btn" (click)="goTo('login')">Conversa con BEENIE</button>
+    </section>
+  </section>
+</section>

@@ -1,7 +1,7 @@
-<header *ngIf="!isAuthenticated;else headerAuth" class="hackathon-header relative shadow-lg px-0 py-0 bg-white">
-  <nav class="flex justify-between bg-white">
+<header *ngIf="!isAuthenticated;else headerAuth" class="hackathon-header relative shadow-lg px-0 py-0 bg-[#F2AF22]">
+  <nav class="flex justify-between bg-[#F2AF22]">
     <div class="w-[130px] md:w-[200px] flex items-center">
-      <p class="text-[var(--orange)] fh2 md:[fh4] cursor-pointer" (click)="goTo('')">hackathon</p>
+      <p class="text-[var(--white)] fh2 md:[fh4] cursor-pointer" (click)="goTo('')">Beenice.</p>
     </div>
     <div class="flex items-center gap-3">
       <div
@@ -41,15 +41,25 @@
 </header>
 
 <ng-template #headerAuth>
-  <header class="hackathon-header relative shadow-lg px-0 py-0 bg-white">
-    <nav class="flex justify-between bg-white">
-      <div class="w-[130px] md:w-[200px] flex items-center">
+  <header class="hackathon-header relative shadow-lg px-0 py-0 bg-[#F2AF22]">
+    <nav class="flex justify-between bg-[#F2AF22]">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <section class="flex flex-row items-center place-content-center gap-4">
+            <mat-icon [matMenuTriggerFor]="menu" class="md:block hidden cursor-pointer">person</mat-icon>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+            </mat-menu>
+          </section>
+        </div>
+      </div>
+      <div class="w-[130px] md:w-[200px] flex place-content-end">
         <!-- <section *ngIf="this.isAuthenticated === false" class="md:hidden">
           <button name="menu" (click)="onMenuToggle()" class="text-[30px] cursor-pointer" mat-button>
             <mat-icon class="scale-[2] mr-0 md:hidden">{{openMenu ? 'close' : 'menu'}}</mat-icon>
           </button>
         </section> -->
-        <p class="text-[var(--orange)] fh2 md:[fh4] cursor-pointer" (click)="goTo('')">hackathon</p>
+        <p class="text-[var(--white)] fh2 md:[fh4] cursor-pointer place-content-end" (click)="goTo('')">Beenice.</p>
         <div [ngClass]="{'hidden': !openMenu, 'block': openMenu}"
           class="md:block navLinks duration-500 absolute z-100 md:static md:w-auto w-full md:h-auto h-[95vh] bg-white flex md:items-center gap-[1.5vw] top-[100%] left-0 px-5 md:py-0 py-5">
           <ul class="flex md:flex-row flex-col md:items-center md:gap-[2vw] gap-8 w-full">
@@ -87,16 +97,7 @@
           </ul>
         </div>
       </div>
-      <div class="flex items-center gap-3">
-        <div class="flex items-center gap-2">
-          <section class="flex flex-row items-center place-content-center gap-4">
-            <mat-icon [matMenuTriggerFor]="menu" class="md:block hidden cursor-pointer">person</mat-icon>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="logout()">Cerrar sesión</button>
-            </mat-menu>
-          </section>
-        </div>
-      </div>
+
     </nav>
   </header>
 </ng-template>

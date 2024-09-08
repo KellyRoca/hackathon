@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/firebase/auth.service';
 
 @Component({
@@ -9,9 +10,9 @@ import { AuthService } from 'src/app/services/firebase/auth.service';
 })
 export class HabitsFormComponent implements OnInit {
   userName: string | null = null;
-  dietOptions = ['Como carne todos los días', 'Como carne algunos días', 'No como carne', 'Soy vegano'];
-  transportOptions = ['Bus', 'Carro o Taxi', 'Bicicleta', 'Voy caminando'];
-  deviceOptions = ['Celular', 'Laptop', 'Tablet'];
+  dietOptions = ['Siempre consumo carne ♥️🍖', 'A veces consumo carne 🍖 ', 'Pocas veces como carne🙅🏼', 'Vegetariana🚫', 'Vegana♥️🐣'];
+  transportOptions = ['🚌 Bus', '🚗 Carro o Taxi', '🚴‍♂️ Bicicleta', '🚶 Caminar'];
+  deviceOptions = ['📱 Celular', '💻 Laptop', '📲 Tablet'];
 
   habits = {
     diet: '',
@@ -21,7 +22,7 @@ export class HabitsFormComponent implements OnInit {
 
   currentStep = 1;  // Controla el paso actual (empieza en la primera pregunta)
 
-  constructor(private firestore: AngularFirestore, private authService: AuthService) {}
+  constructor(private firestore: AngularFirestore, private authService: AuthService, private router: Router) {}
 
   async ngOnInit() {
     const userId = await this.authService.getUserId();
@@ -59,7 +60,11 @@ export class HabitsFormComponent implements OnInit {
           date: this.getCurrentDate()  // Guardar la fecha en formato MM-DD-YYYY
         }, { merge: true });
         console.log('Hábitos guardados');
-        this.currentStep++;  // Pasar a la siguiente pregunta
+        if(this.currentStep === 3){
+          this.router.navigate(['inicio']);
+        }else{
+          this.currentStep++;
+        }// Pasar a la siguiente pregunta
       }
     } catch (error) {
       console.error('Error al guardar hábitos:', error);
@@ -79,6 +84,6 @@ export class HabitsFormComponent implements OnInit {
     const month = ('0' + (date.getMonth() + 1)).slice(-2);  // Asegura dos dígitos
     const day = ('0' + date.getDate()).slice(-2);           // Asegura dos dígitos
     const year = date.getFullYear();
-    return `${month}-${day}-${year}`;
+    return `${year}-${month}-${day}`;
   }
 }

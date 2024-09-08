@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
       if (habitsData) {
         // Si ya tiene hábitos configurados, redirige al chatbot
-        this.router.navigate(['/chatbot']);
+        this.router.navigate(['/inicio']);
       } else {
         // Si no tiene hábitos configurados, redirige al formulario de hábitos
         this.router.navigate(['/habits-form']);

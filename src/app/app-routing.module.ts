@@ -5,9 +5,11 @@ import { RegisterComponent } from 'src/app/components/auth/register/register.com
 import { LoginComponent } from 'src/app/components/auth/login/login.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { HabitsFormComponent } from './components/habits-form/habits-form.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 const routes: Routes = [
-  { path: '', component: PrincipalComponent },
+  { path: '', component: LandingComponent },
+  { path: 'inicio', component: PrincipalComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'chatbot', component: ChatbotComponent },  // Protegido por el AuthGuard
