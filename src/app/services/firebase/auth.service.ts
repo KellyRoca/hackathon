@@ -105,8 +105,7 @@ export class AuthService {
     await this.afAuth.signOut();
     await this._storage?.clear();  // Limpiar el almacenamiento
     await this.setHasUser(false);  // Cambiar el estado de autenticación a false
-    this.router.navigate(['']);
-    location.reload();
+    this.router.navigate(['/']);
   }
 
   // Método para obtener el UID del usuario autenticado
@@ -152,4 +151,15 @@ export class AuthService {
     }
     return null;
   }
+
+  clearUserFromStorage() {
+    if (this._storage) {
+      this._storage.remove('user').then(() => {
+        console.log('Usuario eliminado del storage');
+      }).catch(error => {
+        console.error('Error al eliminar el usuario del storage:', error);
+      });
+    }
+  }
+
 }

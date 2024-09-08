@@ -16,23 +16,21 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { MaterialModule } from './components/shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
-import { GenerateOrderComponent } from './components/dialogs/generate-order/generate-order.component';
 import { NeedLoginComponent } from './components/dialogs/need-login/need-login.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { HabitsFormComponent } from './components/habits-form/habits-form.component';
+import { LandingComponent } from './components/landing/landing.component';
 @NgModule({
   declarations: [
     AppComponent,
     PrincipalComponent,
     RegisterComponent,
     LoginComponent,
-    ConfirmDialogComponent,
-    GenerateOrderComponent,
     NeedLoginComponent,
     ChatbotComponent,
-    HabitsFormComponent
+    HabitsFormComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

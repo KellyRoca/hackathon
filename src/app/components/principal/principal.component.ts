@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-principal',
@@ -16,9 +15,7 @@ export class PrincipalComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private storageService: StorageService,
     private dialog: MatDialog,
-    private spinner: NgxSpinnerService
   ) { }
 
 

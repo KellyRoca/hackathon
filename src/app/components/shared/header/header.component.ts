@@ -1,7 +1,6 @@
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { CartService } from 'src/app/services/cart.service';
 import { AuthService } from 'src/app/services/firebase/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -21,7 +20,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private cartService: CartService,
     private storageService: StorageService
   ) { }
 
@@ -29,25 +27,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   showCategories = false;
   currentCategory: any = null;
-  cartItems = [
-    1
-    // Lista de elementos en el carrito
-  ];
-
-  categories = [
-    {
-      name: 'Aceites',
-      products: ['Cil', 'Cocinero', 'Mirasol', 'Primor']
-    },
-    {
-      name: 'Salsas',
-      products: ['Alpesa', 'Alacena']
-    },
-    {
-      name: 'Lejías',
-      products: ['Opal', 'Sapolio']
-    }
-  ];
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -68,12 +47,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.isAuthenticated$.pipe(takeUntil(this.destroy$)).subscribe((res) => {
       this.isAuthenticated = res;
     })
-
-    this.cartService.cartSubject$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((res) => {
-        this.cartItems = res === null ? [] : res;
-      });
   }
 
   ngOnDestroy(): void {
@@ -86,9 +59,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.setHasUser(false);
-    this.authService.signOut();
+    // Eliminar el estado de autenticación y cerrar sesión
+
+    // Eliminar el usuario almacenado en el Storage
+    this.authService.signOut().then(() => {
+      this.router.navigate(['/']);
+
+    }).catch(error => {
+      console.error('Error al cerrar sesión:', error);
+    });
   }
+
 
   menuOpen = false;
 
@@ -96,7 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.openMenu = !this.openMenu;
     const navlinks = document.querySelector(".navLinks");
     if (this.openMenu) {
-      
+
       document.body.classList.add('openSidebar');
       navlinks.classList.toggle("left-[0%]")
     } else {
