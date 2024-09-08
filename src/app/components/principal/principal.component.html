@@ -1,17 +1,33 @@
 <div class="p-5 max-w-[1200px] m-auto">
-  <h1 class="fh1 mt-5 md:mt-20 mb-4">¡Bienvenido!</h1>
-  <div class="grid grid-cols-2 gap-4 p-6">
-    <button (click)="goTo('chatbot')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Chatbot
-    </button>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-      Iniciativas
-    </button>
-    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-      Métricas
-    </button>
-    <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-      Botón 4
-    </button>
-  </div>
+  <h1 class="fh1 mt-5 md:mt-20 mb-4">¿Qué deseas hacer?</h1>
+  <section class="w-full gap-[14px] flex flex-col">
+    <section class="w-full flex flex-row rounded-lg shadow-lg" (click)="goTo('chatbot')" >
+      <div class="w-[13px] min-w-[13px] h-[96px] bg-[#EFCA08] mr-[10px]" style="border-radius: 8px 0px 0px 8px"></div>
+      <section class="flex flex-col gap-[6px] mr-[12px] place-content-center">
+        <h1 class="text-[16px] strong text-[#000F4973]">Conversa con BEENNY</h1>
+        <p class="text-[12px]">Inicia la medición de tu huella de carbono el día de hoy con preguntas simples.</p>
+      </section>
+    </section>
+    <!-- <section class="w-full flex flex-row rounded-lg shadow-lg">
+      <div class="w-[13px] min-w-[13px] h-[96px] bg-[#00A6A6] mr-[10px]" style="border-radius: 8px 0px 0px 8px"></div>
+      <section class="flex flex-col gap-[6px] mr-[12px] place-content-center">
+        <h1 class="text-[16px] strong text-[#000F4973]">Ver mis recomendaciones</h1>
+        <p class="text-[12px]">Revisa qué recomendaciones tenemos para ti según tu huella de carbono y tus hábitos en la universidad.</p>
+      </section>
+    </section> -->
+    <section (click)="goTo('metrics')" class="w-full flex flex-row rounded-lg shadow-lg">
+      <div class="w-[13px] min-w-[13px] h-[96px] bg-[#22A9F2] mr-[10px]" style="border-radius: 8px 0px 0px 8px"></div>
+      <section class="flex flex-col gap-[6px] mr-[12px] place-content-center">
+        <h1 class="text-[16px] strong text-[#000F4973]">Ver mis métricas</h1>
+        <p class="text-[12px]">¿Deseas conocer tu huella de carbono en tiempo real? Revisa tu progreso diario e histórico y analiza tus avances.</p>
+      </section>
+    </section>
+    <section class="w-full flex flex-row rounded-lg shadow-lg" (click)="goTo('habits-form')">
+      <div class="w-[13px] min-w-[13px] h-[96px] bg-[#EF8700] mr-[10px]" style="border-radius: 8px 0px 0px 8px"></div>
+      <section class="flex flex-col gap-[6px] mr-[12px] place-content-center">
+        <h1 class="text-[16px] strong text-[#000F4973]">Reconfigurar hábitos</h1>
+        <p class="text-[12px]">¿Tus hábitos en alimentación, transporte o uso de tecnología han cambiado? Reconfigura tus hábitos para una ayuda más personalizada.</p>
+      </section>
+    </section>
+  </section>
 </div>

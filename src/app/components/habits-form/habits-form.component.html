@@ -7,7 +7,7 @@
     <h3 class="my-8">¿Cómo describirías mejor tu <strong>dieta</strong>?</h3>
     <div *ngFor="let option of dietOptions" class="option">
       <button (click)="selectOption('diet', option)"
-              [ngClass]="{'selected': habits.diet === option, 'bg-[#008080]': habits.diet === option, 'text-white': habits.diet === option}"
+              [ngClass]="{'selected': habits.diet === option, 'bg-[#008080] text-white': habits.diet === option}"
               class="w-full bg-[#ffff] text-[#00A6A6] py-2 px-4 rounded-lg text-lg border-2 border-[#00A6A6] mb-4">
         {{ option }}
       </button>
@@ -19,7 +19,7 @@
 
   <!-- Pregunta 2: Transporte -->
   <div *ngIf="currentStep === 2" class="transport-selection">
-    <h3>¿Qué <strong>medios de transporte sueles</strong> utilizar en tu día a día?</h3>
+    <h3 class="my-8">¿Qué <strong>medios de transporte sueles</strong> utilizar en tu día a día?</h3>
     <div *ngFor="let option of transportOptions" class="option">
       <button (click)="toggleSelection('transport', option)"
               [ngClass]="{'bg-[#008080] text-white': habits.transport.includes(option)}"
@@ -34,7 +34,7 @@
 
   <!-- Pregunta 3: Dispositivos -->
   <div *ngIf="currentStep === 3" class="device-selection">
-    <h3>¿Qué dispositivos electrónicos utilizas?</h3>
+    <h3 class="my-8">¿Qué dispositivos electrónicos utilizas?</h3>
     <div *ngFor="let option of deviceOptions" class="option">
       <button (click)="toggleSelection('devices', option)"
               [ngClass]="{'bg-[#008080] text-white': habits.devices.includes(option)}"

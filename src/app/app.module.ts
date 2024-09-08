@@ -21,6 +21,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { HabitsFormComponent } from './components/habits-form/habits-form.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { MetricsComponent } from './components/metrics/metrics.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { LandingComponent } from './components/landing/landing.component';
     NeedLoginComponent,
     ChatbotComponent,
     HabitsFormComponent,
-    LandingComponent
+    LandingComponent,
+    MetricsComponent
   ],
   imports: [
     BrowserModule,

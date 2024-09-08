@@ -14,13 +14,17 @@
     </div>
     <div *ngIf="!showMeatConsumptionTyping" class="flex items-start space-x-3 max-w-full">
       <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
-      <div class="chat-message p-3 rounded-lg shadow-md relative max-w-full break-words" style="background-color: #F2F2F3;">
+      <div class="chat-message p-3 rounded-lg shadow-md relative max-w-full break-words"
+        style="background-color: #F2F2F3;">
         <p>Comencemos con tu <strong>COMIDA</strong>. ¿Comiste carne 🥩 hoy?</p>
         <div *ngIf="!answeredMeatConsumption" class="flex flex-wrap space-x-2 mt-2">
-          <button (click)="answerMeatConsumption(true)" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Sí</button>
-          <button (click)="answerMeatConsumption(false)" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">No</button>
+          <button (click)="answerMeatConsumption(true)"
+            class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Sí</button>
+          <button (click)="answerMeatConsumption(false)"
+            class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">No</button>
         </div>
-        <div *ngIf="answeredMeatConsumption" class="mt-2 text-green-600">Respuesta guardada: {{ meatConsumption ? 'Sí' : 'No' }}</div>
+        <div *ngIf="answeredMeatConsumption" class="mt-2 text-green-600">Respuesta guardada: {{ meatConsumption ? 'Sí' :
+          'No' }}</div>
       </div>
     </div>
 
@@ -42,13 +46,16 @@
             {{ transport }}
           </span>
           <section class="flex items-center ml-auto">
-            <input *ngIf="!answeredTransport" type="number" [(ngModel)]="transportUsage[transport]" placeholder="Minutos" class="border p-2 rounded w-16 mr-1 text-right"/>
-            <input *ngIf="answeredTransport" type="number" [(ngModel)]="transportUsage[transport]" class="border p-2 rounded w-16 mr-1 text-right" readonly/>
+            <input *ngIf="!answeredTransport" type="number" [(ngModel)]="transportUsage[transport]"
+              placeholder="Minutos" class="border p-2 rounded w-16 mr-1 text-right" />
+            <input *ngIf="answeredTransport" type="number" [(ngModel)]="transportUsage[transport]"
+              class="border p-2 rounded w-16 mr-1 text-right" readonly />
             <span>minutos</span>
           </section>
         </div>
         <div class="flex justify-end">
-          <button *ngIf="!answeredTransport" (click)="submitTransport()" class="bg-[#00A6A6] text-white w-[81px] h-[23px] rounded-[12px] mt-2">¡Listo!</button>
+          <button *ngIf="!answeredTransport" (click)="submitTransport()"
+            class="bg-[#00A6A6] text-white w-[81px] h-[23px] rounded-[12px] mt-2">¡Listo!</button>
         </div>
         <div *ngIf="answeredTransport" class="mt-2 text-green-600">Respuesta guardada para la movilidad.</div>
       </div>
@@ -71,13 +78,16 @@
             {{ device }}
           </span>
           <section class="flex items-center ml-auto">
-            <input *ngIf="!answeredDevices" type="number" [(ngModel)]="deviceUsage[device]" placeholder="Minutos" class="border p-2 rounded w-16 mr-1 text-right"/>
-            <input *ngIf="answeredDevices" type="number" [(ngModel)]="deviceUsage[device]" class="border p-2 rounded w-16 mr-1 text-right" readonly/>
+            <input *ngIf="!answeredDevices" type="number" [(ngModel)]="deviceUsage[device]" placeholder="Minutos"
+              class="border p-2 rounded w-16 mr-1 text-right" />
+            <input *ngIf="answeredDevices" type="number" [(ngModel)]="deviceUsage[device]"
+              class="border p-2 rounded w-16 mr-1 text-right" readonly />
             <span>minutos</span>
           </section>
         </div>
         <div class="flex justify-end">
-          <button *ngIf="!answeredDevices" (click)="submitDevices()" class="bg-[#00A6A6] text-white w-[81px] h-[23px] rounded-[12px] mt-2">¡Listo!</button>
+          <button *ngIf="!answeredDevices" (click)="submitDevices()"
+            class="bg-[#00A6A6] text-white w-[81px] h-[23px] rounded-[12px] mt-2">¡Listo!</button>
         </div>
         <div *ngIf="answeredDevices" class="mt-2 text-green-600">Respuesta guardada para la tecnología.</div>
       </div>
@@ -97,16 +107,43 @@
     </div>
 
     <!-- Botones de acción con sombra y fondo transparente -->
+
     <div *ngIf="showActionButtons" class="flex items-start space-x-3 w-full">
       <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
-      <div class="chat-message p-3 rounded-lg shadow-lg mt-4 w-full break-words" style="background-color: #F2F2F3;" >
+      <div class="chat-message p-3 rounded-lg shadow-lg mt-4 w-full break-words" style="background-color: #F2F2F3;">
         <p>¿Qué quisieras hacer ahora?</p>
         <div class="flex flex-col space-y-2">
-          <button (click)="handleAction('metrics')" style="background-color: rgba(255, 255, 255, 0.45);" class=" text-neutral-950 w-full h-[32px] rounded-[8px] drop-shadow-md">🕵🏼‍♀️ Ver mis métricas</button>
-          <button (click)="handleAction('recommend')" style="background-color: rgba(255, 255, 255, 0.45);" class=" text-neutral-950 w-full h-[32px] rounded-[8px] drop-shadow-md">📢 ¡Recomiéndame algo!</button>
-          <button (click)="handleAction('end')" style="background-color: rgba(255, 255, 255, 0.45);" class=" text-neutral-950 w-full h-[32px] rounded-[8px] drop-shadow-md">🔚 Terminar conversación</button>
+          <!-- <button (click)="handleAction('metrics')" style="background-color: rgba(255, 255, 255, 0.45);"
+            class="text-neutral-950 w-full h-[32px] rounded-[8px] drop-shadow-md">🕵🏼‍♀️ Ver mis métricas</button> -->
+          <button (click)="handleAction('recommend')" style="background-color: rgba(255, 255, 255, 0.45);"
+            class="text-neutral-950 w-full h-[32px] rounded-[8px] drop-shadow-md">📢 ¡Recomiéndame algo!</button>
+          <button (click)="handleAction('end')" style="background-color: rgba(255, 255, 255, 0.45);"
+            class="text-neutral-950 w-full h-[32px] rounded-[8px] drop-shadow-md">🔚 Terminar conversación</button>
         </div>
       </div>
     </div>
+
+    <!-- Mensaje de recomendaciones -->
+    <div *ngIf="showFinalMessageTyping" class="flex items-start space-x-3 max-w-full">
+      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <div class="bg-gray-300 text-gray-600 p-3 rounded-lg shadow-md relative max-w-full">... escribiendo</div>
+    </div>
+    <div *ngIf="showRecommendationMessage" class="flex items-start space-x-3 max-w-full">
+      <img src="/assets/images/beenny.png" alt="Chatbot Avatar" class="w-9 h-9 rounded-full flex-shrink-0">
+      <div class="chat-message p-3 rounded-lg shadow-md mt-4 max-w-full break-words" style="background-color: #F2F2F3;">
+        <p>¡Aquí tienes algunas recomendaciones para reducir tu impacto ambiental!</p>
+        <ul class="list-disc ml-5">
+          <li *ngFor="let recommendation of recommendationMessage">{{ recommendation }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Botón Finalizar Conversación -->
+    <div *ngIf="showRecommendationMessage" class="flex justify-end">
+      <button (click)="handleAction('end')" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">
+        Finalizar conversación
+      </button>
+    </div>
+
   </div>
 </div>

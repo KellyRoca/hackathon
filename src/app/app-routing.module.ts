@@ -6,14 +6,16 @@ import { LoginComponent } from 'src/app/components/auth/login/login.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { HabitsFormComponent } from './components/habits-form/habits-form.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { MetricsComponent } from './components/metrics/metrics.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'inicio', component: PrincipalComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'chatbot', component: ChatbotComponent },  // Protegido por el AuthGuard
-  { path: 'habits-form', component: HabitsFormComponent },  // Protegido por el AuthGuard
+  { path: 'chatbot', component: ChatbotComponent },
+  { path: 'habits-form', component: HabitsFormComponent },
+  { path: 'metrics', component: MetricsComponent}
 ];
 
 @NgModule({

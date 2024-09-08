@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthService } from 'src/app/services/firebase/auth.service';  // Importación corregida
 import { firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chatbot',
@@ -30,8 +31,10 @@ export class ChatbotComponent implements OnInit {
   showFinalMessageTyping = false;
   showActionButtons = false;
   co2Total: number = 0;  // Almacenar el total de CO2 calculado
+  recommendationMessage: string[] = [];
+  showRecommendationMessage = false;
 
-  constructor(private firestore: AngularFirestore, private authService: AuthService) {}
+  constructor(private firestore: AngularFirestore, private authService: AuthService, private router: Router) { }
 
   async ngOnInit() {
     const userId = await this.authService.getUserId();
@@ -40,6 +43,7 @@ export class ChatbotComponent implements OnInit {
       const habitsDoc = await firstValueFrom(this.firestore.collection('habits').doc(userId).get());
       if (habitsDoc?.exists) {
         this.habits = habitsDoc.data();
+        console.log(this.habits)
         this.habits.transport.forEach((transport: string) => {
           this.transportUsage[transport] = 0;
         });
@@ -146,33 +150,82 @@ export class ChatbotComponent implements OnInit {
     // Calcular CO2 de los transportes
     Object.keys(this.transportUsage).forEach((transport: string) => {
       const minutes = this.transportUsage[transport] || 0;
-      totalCO2 += minutes * (transport === 'Bus' ? 80 : 180);  // Ejemplo de cálculo
+      totalCO2 += minutes * (transport === '🚌 Bus' ? 80 : transport === '🚗 Carro o Taxi' ? 180 : 0);  // Ejemplo de cálculo
     });
 
     // Calcular CO2 de los dispositivos
     Object.keys(this.deviceUsage).forEach((device: string) => {
       const minutes = this.deviceUsage[device] || 0;
-      totalCO2 += minutes * (device === 'Celular' ? 60 : device === 'Laptop' ? 90 : 80);
+      totalCO2 += minutes * (device === '📱 Celular' ? 60 : device === '💻 Laptop' ? 90 : device === '📲 Tablet' ? 80 : 0);
     });
 
     return totalCO2;
   }
 
-  // Método para manejar la acción del usuario en los botones
   handleAction(action: string) {
     switch (action) {
       case 'metrics':
         console.log('Ver mis métricas');
-        // Navegar a la página de métricas o ejecutar alguna lógica
+        // Lógica para ver métricas
         break;
       case 'recommend':
-        console.log('¡Recomiéndame algo!');
-        // Ejecutar lógica para recomendaciones
+        this.showRecommendations();
         break;
       case 'end':
-        console.log('Terminar conversación');
-        // Cerrar o finalizar el chat
+        this.router.navigate(['inicio'])
+        // Lógica para finalizar el chat
         break;
     }
   }
+
+  showRecommendations() {
+    let recommendations: string[] = [];
+
+    if (this.co2Total <= 5500) {
+      recommendations = [
+        'Instala paneles solares de Enel X Solar y comienza a generar tu propia energía limpia.',
+        'Cambia a bombillas Philips LED y reduce tu consumo eléctrico de inmediato.',
+        'Elige una bicicleta Aro Bikes y recorre tu ciudad de manera ecológica.',
+        'Utiliza la Compostera BioMate para convertir tus restos de comida en abono orgánico.',
+        'Únete a los talleres de la SPDA y aprende cómo reducir tu impacto ambiental hoy mismo.'
+      ];
+    } else if (this.co2Total >= 5501 && this.co2Total <= 15000) {
+      recommendations = [
+        'Prueba los productos de QuinoaLife y comienza a reducir tu consumo de carne roja con opciones vegetales deliciosas.',
+        'Únete a la comunidad de carpooling de EasyCarpool y disminuye tu huella de carbono en cada viaje.',
+        'Recicla con EcoPuntos en Lima y dale una nueva vida a tus residuos reciclables.',
+        'Reemplaza tus electrodomésticos por modelos A++ de Bosch y ahorra energía en casa.',
+        'Mejora el aislamiento con productos Isover y reduce el uso de calefacción y refrigeración.',
+        'Únete a las campañas de Greenpeace Perú y protege los ecosistemas locales.'
+      ];
+    } else if (this.co2Total >= 15001 && this.co2Total <= 27000) {
+      recommendations = [
+        'Viaja más en bus con Cruz del Sur y reduce tus vuelos aéreos.',
+        'Instala paneles solares de Solem y comienza a usar energía renovable en casa.',
+        'Cambia a un vehículo eléctrico de Nissan y reduce tu impacto ambiental.',
+        'Recicla tus electrónicos en los puntos de Claro Recicla y gestiona tus residuos tecnológicos.',
+        'Instala grifos de ahorro de agua Rotoplas y reduce el consumo en casa.',
+        'Incorpora productos de Veggie Perú para disfrutar más días sin carne.'
+      ];
+    } else if (this.co2Total > 27000) {
+      recommendations = [
+        'Inicia una dieta con productos de Madre Natura y reduce drásticamente el consumo de carne.',
+        'Cambia a un auto eléctrico Nissan o usa transporte público para eliminar los autos de combustión.',
+        'Instala energía renovable con Auto Solar Perú y reduce tu dependencia de la red eléctrica.',
+        'Compra a granel con BioMarket y deja atrás los plásticos no reciclables.',
+        'Únete a la reforestación de Conservamos por Naturaleza y participa en la protección de áreas naturales.',
+        'Transforma tu hogar con soluciones ecológicas de EcoCasa y hazlo más eficiente energéticamente.'
+      ];
+    }
+
+    // Simular "escribiendo" antes de mostrar el mensaje
+    this.showFinalMessageTyping = true;
+    setTimeout(() => {
+      this.showFinalMessageTyping = false;
+      // Almacenar las recomendaciones en un array
+      this.recommendationMessage = recommendations;
+      this.showRecommendationMessage = true;
+    }, 500);
+  }
+
 }
