@@ -92,13 +92,8 @@
           <section class="flex flex-row items-center place-content-center gap-4">
             <mat-icon [matMenuTriggerFor]="menu" class="md:block hidden cursor-pointer">person</mat-icon>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="goTo('order-history')">Mis órdenes</button>
               <button mat-menu-item (click)="logout()">Cerrar sesión</button>
             </mat-menu>
-            <mat-icon (click)="goTo('/cart')" class="shopping-cart-icon cursor-pointer" [ngClass]="{'has-items': cartItems.length > 0}">
-              shopping_cart
-              <span *ngIf="cartItems.length > 0" class="item-count">{{ cartItems.length }}</span>
-            </mat-icon>
           </section>
         </div>
       </div>

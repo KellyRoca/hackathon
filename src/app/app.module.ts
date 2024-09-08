@@ -24,6 +24,8 @@ import { PreviewOrderComponent } from './components/dialogs/preview-order/previe
 import { GenerateOrderComponent } from './components/dialogs/generate-order/generate-order.component';
 import { NeedLoginComponent } from './components/dialogs/need-login/need-login.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { HabitsFormComponent } from './components/habits-form/habits-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ConfirmDialogComponent,
     PreviewOrderComponent,
     GenerateOrderComponent,
-    NeedLoginComponent
+    NeedLoginComponent,
+    ChatbotComponent,
+    HabitsFormComponent
   ],
   imports: [
     BrowserModule,

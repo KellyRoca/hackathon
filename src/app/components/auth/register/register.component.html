@@ -1,4 +1,5 @@
-<section class="p-5 flex flex-col gap-8 md:flex-row max-w-[1200px] place-content-center md:m-auto md:mt-20 mt-4 md:items-center">
+<section
+  class="p-5 flex flex-col gap-8 md:flex-row max-w-[1200px] place-content-center md:m-auto md:mt-20 mt-4 md:items-center">
   <section class="hidden md:flex flex-col">
     <img class="max-w-[500px]" src="assets/images/portada.png" alt="portada">
     <section class="flex flex-row gap-3 items-center">
@@ -7,16 +8,17 @@
     </section>
   </section>
   <section class="flex flex-col">
-    <form *ngIf="stepOne; else secondStep" [formGroup]="stepOneForm" (ngSubmit)="nextStep()" class="flex flex-col w-full max-w-[394px]">
+    <form *ngIf="stepOne; else secondStep" [formGroup]="stepOneForm" (ngSubmit)="nextStep()"
+      class="flex flex-col w-full max-w-[394px]">
       <section class="flex flex-col mb-3">
         <p class="fs-14 text-[var(--cetacean-50)]">Paso 1 de 2</p>
         <h1 class="fh1">Empieza tu registro</h1>
       </section>
       <mat-form-field appearance="outline">
-        <mat-label>RUC de la empresa</mat-label>
-        <input minlength="11" maxlength="11" matInput formControlName="ruc" placeholder="Ej. 10092323232">
-        <mat-error *ngIf="stepOneForm.get('ruc').invalid">
-          {{ stepOneForm.get("ruc").errors | controlErrorHandler }}
+        <mat-label>DNI</mat-label>
+        <input minlength="8" maxlength="8" matInput formControlName="docNumber" placeholder="Ej. 77776624">
+        <mat-error *ngIf="stepOneForm.get('docNumber').invalid">
+          {{ stepOneForm.get("docNumber").errors | controlErrorHandler }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
@@ -34,32 +36,19 @@
         </mat-error>
       </mat-form-field>
       <mat-checkbox class="mb-2" formControlName="promo">Autorizo recibir comunicaciones promocionales.</mat-checkbox>
-      <mat-checkbox class="mb-2" formControlName="terms">He leído y acepto los Términos y condiciones y Políticas de privacidad de Dexhackathon.</mat-checkbox>
-      <button mat-flat-button color="accent" class="form-btn mt-5" type="submit" [disabled]="stepOneForm.invalid">Siguiente</button>
+      <mat-checkbox class="mb-2" formControlName="terms">He leído y acepto los Términos y condiciones y Políticas de
+        privacidad de Dexhackathon.</mat-checkbox>
+      <button mat-flat-button color="accent" class="form-btn mt-5" type="submit"
+        [disabled]="stepOneForm.invalid">Siguiente</button>
       <section class="mt-4">
-        <p class="text-[var(--cetacean-50)] fs14 text-center">Ya tienes una cuenta <a routerLink="/login" class="cursor-pointer text-[var(--skyblue)] fs-14">Iniciar sesión</a></p>
+        <p class="text-[var(--cetacean-50)] fs14 text-center">Ya tienes una cuenta <a routerLink="/login"
+            class="cursor-pointer text-[var(--skyblue)] fs-14">Iniciar sesión</a></p>
       </section>
     </form>
     <ng-template #secondStep>
       <form [formGroup]="stepTwoForm" (ngSubmit)="onSignUp()" class="flex flex-col w-full max-w-[394px]">
         <p class="fs-14 text-[var(--cetacean-50)]">Paso 2 de 2</p>
         <h1 class="fh2">Datos de contacto</h1>
-        <section class="flex flex-row gap-3">
-          <mat-form-field class="w-30" appearance="outline">
-            <mat-label>Tipo de doc.</mat-label>
-            <mat-select formControlName="docType">
-              <mat-option value="DNI">DNI</mat-option>
-              <mat-option value="CE">CE</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="w-80" appearance="outline">
-            <mat-label>N° de documento</mat-label>
-            <input matInput formControlName="docNumber" maxlength="6" maxlength="8" placeholder="Ingresa tu número de documento">
-            <mat-error *ngIf="stepTwoForm.get('docNumber').invalid">
-              {{ stepTwoForm.get("docNumber").errors | controlErrorHandler }}
-            </mat-error>
-          </mat-form-field>
-        </section>
         <mat-form-field appearance="outline">
           <mat-label>Nombres</mat-label>
           <input matInput formControlName="firstName" placeholder="Ingresa tus nombres">
@@ -83,14 +72,28 @@
             </mat-error>
           </mat-form-field>
         </section>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input matInput formControlName="birthdate" [matDatepicker]="picker"
+            placeholder="Selecciona tu fecha de nacimiento">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="stepTwoForm.get('birthdate').invalid">
+            {{ stepTwoForm.get("birthdate").errors | controlErrorHandler }}
+          </mat-error>
+        </mat-form-field>
+
         <mat-form-field appearance="outline">
           <mat-label>N° de celular</mat-label>
-          <input minlength="9" maxlength="9" matInput formControlName="phone" placeholder="Ingresa tu número de celular">
+          <input minlength="9" maxlength="9" matInput formControlName="phone"
+            placeholder="Ingresa tu número de celular">
           <mat-error *ngIf="stepTwoForm.get('phone').invalid">
             {{ stepTwoForm.get("phone").errors | controlErrorHandler }}
           </mat-error>
         </mat-form-field>
-        <button mat-flat-button color="accent" class="form-btn" type="submit" [disabled]="stepTwoForm.invalid">Crear cuenta</button>
+        <button mat-flat-button color="accent" class="form-btn" type="submit" [disabled]="stepTwoForm.invalid">Crear
+          cuenta</button>
       </form>
     </ng-template>
   </section>

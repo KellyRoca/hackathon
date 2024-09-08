@@ -23,7 +23,7 @@ export class RegisterComponent {
     private spinner: NgxSpinnerService
   ) {
     this.stepOneForm = this.fb.group({
-      ruc: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      docNumber: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       promo: [false],
@@ -31,11 +31,10 @@ export class RegisterComponent {
     });
 
     this.stepTwoForm = this.fb.group({
-      docType: ['', [Validators.required]],
-      docNumber: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       middleName: ['', [Validators.required]],
+      birthdate: ['', Validators.required],
       phone: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]]
     });
   }
@@ -49,11 +48,11 @@ export class RegisterComponent {
   async onSignUp() {
     this.spinner.show();
     if (this.stepTwoForm.valid) {
-      const { email, password, ruc } = this.stepOneForm.value;
-      const { firstName, lastName, middleName, docType, docNumber, phone } = this.stepTwoForm.value;
+      const { email, password, docNumber } = this.stepOneForm.value;
+      const { firstName, lastName, middleName, phone, birthdate } = this.stepTwoForm.value;
 
       try {
-        await this.authService.signUp(email, password, firstName, lastName, middleName, docType, docNumber, phone, ruc);
+        await this.authService.signUp(email, password, firstName, lastName, middleName, phone, docNumber, birthdate);
         // console.log('User created successfully');
         this.spinner.hide();
         this.authService.setHasUser(true);

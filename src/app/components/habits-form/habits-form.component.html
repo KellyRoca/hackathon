@@ -1,0 +1,38 @@
+<div *ngIf="step === 1">
+  <label for="diet">¿Qué opción describe mejor tu dieta?</label>
+  <div class="button-group">
+    <button
+      *ngFor="let option of dietOptions"
+      (click)="selectOption('diet', option)"
+      [class.selected]="habits.diet === option">
+      {{ option }}
+    </button>
+  </div>
+  <button (click)="nextStep()">Siguiente</button>
+</div>
+
+<div *ngIf="step === 2">
+  <label for="transport">¿Qué medio de transporte utilizas?</label>
+  <div class="button-group">
+    <button
+      *ngFor="let option of transportOptions"
+      (click)="toggleSelection('transport', option)"
+      [class.selected]="habits.transport.includes(option)">
+      {{ option }}
+    </button>
+  </div>
+  <button (click)="nextStep()">Siguiente</button>
+</div>
+
+<div *ngIf="step === 3">
+  <label for="devices">¿Qué dispositivos electrónicos usas?</label>
+  <div class="button-group">
+    <button
+      *ngFor="let option of deviceOptions"
+      (click)="toggleSelection('devices', option)"
+      [class.selected]="habits.devices.includes(option)">
+      {{ option }}
+    </button>
+  </div>
+  <button (click)="saveHabits()">Guardar</button>
+</div>

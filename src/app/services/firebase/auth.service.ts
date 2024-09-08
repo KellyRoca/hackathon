@@ -38,7 +38,7 @@ export class AuthService {
     return this.isAuthenticated.getValue();
   }
 
-  async signUp(email: string, password: string, firstName: string, lastName: string, middleName: string, docType: string, docNumber: string, phone: string, ruc: string) {
+  async signUp(email: string, password: string, firstName: string, lastName: string, middleName: string, phone: string, docNumber: string, birthdate: any) {
     try {
       const userCredential = await this.afAuth.createUserWithEmailAndPassword(email, password);
       const user = userCredential.user;
@@ -47,13 +47,13 @@ export class AuthService {
           firstName: firstName,
           lastName: lastName,
           middleName: middleName,
-          docType: docType,
+          docType: 'DNI',
           docNumber: docNumber,
           phone: phone,
           email: email,
-          ruc: ruc
+          birthdate: birthdate,
         });
-        await this._storage?.set('user', { email, password, firstName, lastName, middleName, docType, docNumber, phone, user: user.uid, ruc });
+        await this._storage?.set('user', { email, password, firstName, lastName, middleName, phone, user: user.uid, docNumber, birthdate });
       }
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -94,5 +94,23 @@ export class AuthService {
     await this._storage?.clear();
     this.router.navigate(['']);
     location.reload();
+  }
+
+   // Método para obtener el UID del usuario autenticado
+   async getUserId(): Promise<string | null> {
+    const user = await this.afAuth.currentUser;
+    return user ? user.uid : null;
+  }
+
+  // Método para obtener el nombre del usuario autenticado (si está disponible)
+  async getUserName(): Promise<string | null> {
+    const user = await this.afAuth.currentUser;
+    if (user) {
+      const userDocRef = this.firestore.collection('users').doc(user.uid);
+      const userDoc = await lastValueFrom(userDocRef.get());
+      const userData: any = userDoc.data();
+      return userData ? userData.firstName : null;
+    }
+    return null;
   }
 }

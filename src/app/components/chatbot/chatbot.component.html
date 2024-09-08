@@ -1,0 +1,54 @@
+<div>
+  <p>Hola, {{ userName }}</p>
+  <p>¿Qué tiempo quieres guardar en tus hábitos?</p>
+  <div class="button-group">
+    <button
+      *ngFor="let range of timeRanges"
+      (click)="selectTimeRange(range)"
+      [class.selected]="selectedTimeRange === range">
+      {{ range }}
+    </button>
+  </div>
+
+  <div *ngIf="showCarneQuestion && habits.diet !== 'vegano' && habits.diet !== 'no_carne'">
+    <p>¿En este horario has consumido carne?</p>
+    <button
+      *ngFor="let option of carneOptions"
+      (click)="selectOption('meatConsumption', option)"
+      [class.selected]="meatConsumption === option">
+      {{ option }}
+    </button>
+  </div>
+
+  <!-- Sección para Medios de Transporte -->
+  <div *ngIf="habits?.transport?.length > 0">
+    <p>¿Cuánto tiempo has usado los siguientes medios de transporte?</p>
+    <div *ngFor="let transport of habits.transport">
+      <img [src]="getTransportImage(transport)" alt="{{ transport }}" class="transport-image"/>
+      <p>{{ transport }}</p>
+      <input
+        type="number"
+        placeholder="Minutos"
+        [(ngModel)]="transportTimes[transport]"
+        min="0"
+      />
+    </div>
+  </div>
+
+  <!-- Sección para Dispositivos Electrónicos -->
+  <div *ngIf="habits?.devices?.length > 0">
+    <p>¿Cuánto tiempo has usado estos dispositivos electrónicos?</p>
+    <div *ngFor="let device of habits.devices">
+      <img [src]="getDeviceImage(device)" alt="{{ device }}" class="device-image"/>
+      <p>{{ device }}</p>
+      <input
+        type="number"
+        placeholder="Minutos"
+        [(ngModel)]="deviceTimes[device]"
+        min="0"
+      />
+    </div>
+  </div>
+
+  <button (click)="saveDailyHabits()">Guardar hábitos</button>
+</div>

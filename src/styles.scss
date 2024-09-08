@@ -23,7 +23,7 @@ body,
   .mat-accent {
     z-index: -1 !important;
   }
-  .items-cart{
+  .items-cart {
     display: none !important;
   }
 }
@@ -36,8 +36,13 @@ body,
   --red: #f24322;
   --yellow: #f2af22;
   --skyblue: #22a9f2;
-  --green: #5cf222;
+  --green: #dfebba;
   --cetacean-50: #000f4980;
+  --green: #dfebba;
+  --cream: #f5f3e3;
+  --soft-green: #b6d4a1;
+  --gray-green: #adc8b4;
+  --light-beige: #ece8d2;
 }
 
 .fh1 {
@@ -131,11 +136,11 @@ button.mdc-fab.mdc-fab--mini.mat-mdc-mini-fab.mat-accent.mat-mdc-button-base {
   }
 }
 
-.strong{
+.strong {
   font-weight: 800 !important;
 }
 
-.mdc-dialog__surface{
+.mdc-dialog__surface {
   border-radius: 14px !important;
   @media (min-width: 768px) {
     border-radius: 20px !important;

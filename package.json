@@ -24,6 +24,7 @@
     "@ionic/storage-angular": "^4.0.0",
     "firebase": "^10.13.1",
     "ngx-spinner": "^17.0.0",
+    "openai": "^4.58.1",
     "rxjs": "7.8.0",
     "tslib": "2.3.0",
     "zone.js": "0.14.3"
